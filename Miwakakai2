@@ -1,0 +1,97 @@
+/*------------------------------------------------
+  START	開発用課題　　三輪　2014.07.28            
+------------------------------------------------*/
+//入力値を計算し結果を出力をする
+
+class Miwakadai2{
+	public static void main(String[] args){
+
+
+	int[] kazu  = new int[args.length]; 		//宣言＆入力
+	int[] shiki = new int[args.length];
+	int flg     = 0;
+	int kotae   = 0;
+	String ope  = "";
+
+	
+//入力値のチェックと計算
+
+	for (int i = 0 ; i < args.length ; i++ ){
+	    int a = i - 1 ; int b = i + 1;
+
+
+	    try{	//入力値＝数値のとき
+		shiki[i] = 1;
+		kazu[i] = Integer.parseInt(args[i]);
+
+
+System.out.println("check:" + a + "  " + "  " + i + "  " + b + "  " + shiki[i]);
+
+
+
+	    }catch(NumberFormatException e){	//入力値＝数値でないとき
+		kazu[b] = Integer.parseInt(args[b]);
+	        ope = args[i];
+
+		    switch(ope){	//演算記号による計算
+		        case "+" :	//足し算
+		           shiki[i] = 5;
+			if ( flg == 0 ){
+			    flg = 1;
+			    kotae = kazu[a] + kazu[b];
+			}else{
+			    kotae = kotae + kazu[b];
+			}
+			break;
+
+			case "-" :	//引き算
+			    shiki[i] = 6;
+			if ( flg == 0 ){
+			    flg = 1;
+			    kotae = kazu[a] - kazu[b];
+			}else{
+		            kotae = kotae - kazu[b];
+			}
+			break;
+
+			case  "*" :	//掛け算	
+			if ( flg == 0 ){
+			    flg = 1;
+			    kotae = kazu[a] * kazu[b];
+			}else{
+		            kotae = kotae * kazu[b];
+			}
+			break;
+
+			case "/" :	//割り算
+			if ( kazu[b] == 0){
+			    System.out.println("0で割れません");
+			    System.exit(0);
+			}
+			if ( flg == 0 ){
+			    flg = 1;
+			    kotae = kazu[a] / kazu[b];
+			}else{
+		            kotae = kotae / kazu[b];
+			}
+			break;
+
+			default:
+	        	    System.out.println("計算式を入力してください" + ope);
+			    System.exit(0);
+		   }
+	    }
+
+
+	}
+	System.out.println("答え：　" + kotae);	//結果出力	
+
+
+
+
+	}
+}
+
+//------------------------------------------------
+//END 	開発用課題　　三輪			  　			
+//------------------------------------------------
